@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>뇌리멤버 | BRAIN REMEMBER</title>
+<meta name="description" content="건강한 오늘을 만들고, 새로운 내일을 준비하는 곳. 뇌리멤버">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   ★ 색상 바꾸기: 아래 값만 바꾸면 홈페이지 전체 색이 바뀝니다.
+   ========================================================= */
+:root{
+  --cream:#FBF8F2;      /* 기본 배경 (크림 화이트) */
+  --beige:#EFE7DA;      /* 보조 배경 (차분한 베이지) */
+  --beige-dark:#D9CBB4;
+  --sage:#7E9A82;       /* 포인트 색 (세이지 그린) */
+  --sage-dark:#4F6B54;  /* 진한 세이지 (버튼, 제목) */
+  --sage-light:#E4ECE3;
+  --text:#2E2B27;       /* 본문 글자 */
+  --text-soft:#5E584F;  /* 보조 글자 */
+  --white:#FFFFFF;
+  --radius:18px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  font-size:19px;           /* 중장년층을 위한 큰 기본 글자 */
+  line-height:1.8;
+  color:var(--text);
+  background:var(--cream);
+  word-break:keep-all;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:110px 0}
+h1,h2,h3{font-family:'Noto Serif KR',serif;line-height:1.4;color:var(--text)}
+h2{font-size:clamp(30px,4vw,40px);margin-bottom:18px}
+h3{font-size:24px;margin-bottom:10px}
+.eyebrow{
+  display:inline-block;font-size:15px;font-weight:700;letter-spacing:.12em;
+  color:var(--sage-dark);margin-bottom:14px;
+}
+.section-lead{font-size:20px;color:var(--text-soft);max-width:720px;margin-bottom:52px}
+.bg-beige{background:var(--beige)}
+.bg-sage{background:var(--sage-light)}
+
+/* ---------- 상단 메뉴 ---------- */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(251,248,242,.96);border-bottom:1px solid var(--beige);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1.2}
+.logo strong{font-family:'Noto Serif KR',serif;font-size:24px;color:var(--sage-dark)}
+.logo span{font-size:12px;letter-spacing:.2em;color:var(--text-soft)}
+.menu{display:flex;gap:6px;list-style:none}
+.menu a{
+  display:block;padding:10px 14px;border-radius:10px;text-decoration:none;
+  font-size:17px;font-weight:500;color:var(--text);
+}
+.menu a:hover,.menu a.active{background:var(--sage-light);color:var(--sage-dark)}
+.menu a.menu-cta{background:var(--sage-dark);color:var(--white)}
+.menu a.menu-cta:hover{background:var(--sage)}
+.menu-toggle{
+  display:none;background:none;border:2px solid var(--sage-dark);border-radius:10px;
+  color:var(--sage-dark);font-size:17px;font-weight:700;padding:8px 14px;cursor:pointer;
+  font-family:inherit;
+}
+
+/* ---------- 버튼 ---------- */
+.btn{
+  display:inline-block;padding:16px 28px;border-radius:999px;text-decoration:none;
+  font-size:18px;font-weight:700;border:2px solid var(--sage-dark);
+  transition:background .2s,color .2s;cursor:pointer;font-family:inherit;
+}
+.btn-primary{background:var(--sage-dark);color:var(--white)}
+.btn-primary:hover{background:var(--sage);border-color:var(--sage)}
+.btn-outline{background:transparent;color:var(--sage-dark)}
+.btn-outline:hover{background:var(--sage-light)}
+
+/* ---------- 첫 화면 ---------- */
+#home{padding:170px 0 110px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(34px,5vw,54px);margin-bottom:24px}
+.hero h1 em{font-style:normal;color:var(--sage-dark)}
+.hero p{font-size:21px;color:var(--text-soft);margin-bottom:38px;max-width:560px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:14px}
+.brand-message{
+  margin-top:44px;padding-top:24px;border-top:1px solid var(--beige-dark);
+  font-family:'Noto Serif KR',serif;font-size:19px;color:var(--sage-dark);
+}
+
+/* ---------- 이미지 자리 (나중에 실제 사진으로 교체) ---------- */
+.img-placeholder{
+  width:100%;aspect-ratio:4/5;border-radius:var(--radius);
+  background:linear-gradient(160deg,var(--sage-light),var(--beige));
+  border:2px dashed var(--beige-dark);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:var(--text-soft);font-size:16px;padding:20px;
+}
+.img-placeholder.wide{aspect-ratio:16/10}
+.photo{width:100%;border-radius:var(--radius);object-fit:cover}
+
+/* ---------- 소개 ---------- */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+.values{display:grid;gap:18px;margin-top:30px}
+.value{background:var(--white);border-radius:14px;padding:22px 26px;border-left:5px solid var(--sage)}
+.value strong{display:block;font-size:20px;color:var(--sage-dark);margin-bottom:4px}
+.value p{color:var(--text-soft);font-size:18px}
+.operator{
+  margin-top:34px;background:var(--white);border-radius:var(--radius);padding:28px;
+}
+.operator h3{color:var(--sage-dark)}
+.operator p{color:var(--text-soft)}
+
+/* ---------- 카드 ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.card{
+  background:var(--white);border-radius:var(--radius);padding:32px 28px;
+  border:1px solid var(--beige);
+}
+.card .num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border-radius:50%;background:var(--sage-light);
+  color:var(--sage-dark);font-weight:700;margin-bottom:18px;
+}
+.card p{color:var(--text-soft);font-size:18px}
+.notice{
+  margin-top:36px;padding:20px 24px;border-radius:14px;background:var(--white);
+  font-size:16px;color:var(--text-soft);border:1px solid var(--beige-dark);
+}
+.section-cta{margin-top:40px}
+
+/* ---------- 상담·교육 신청 ---------- */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+.contact-ways{display:grid;gap:16px;margin-top:10px}
+.way{background:var(--white);border-radius:14px;padding:22px 24px}
+.way strong{display:block;font-size:18px;color:var(--sage-dark)}
+.way .val{font-size:20px;font-weight:700;word-break:break-all}
+.placeholder-text{color:#B0643C}  /* 아직 입력하지 않은 정보는 주황색으로 표시 */
+form{background:var(--white);border-radius:var(--radius);padding:36px}
+.field{margin-bottom:22px}
+label{display:block;font-weight:700;margin-bottom:8px;font-size:18px}
+input,select,textarea{
+  width:100%;padding:15px 16px;font-size:18px;font-family:inherit;color:var(--text);
+  border:2px solid var(--beige-dark);border-radius:12px;background:var(--cream);
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--sage)}
+textarea{min-height:150px;resize:vertical}
+.consent{
+  display:flex;gap:12px;align-items:flex-start;font-size:16px;color:var(--text-soft);
+  background:var(--cream);padding:16px;border-radius:12px;margin-bottom:24px;
+}
+.consent input{width:24px;height:24px;flex-shrink:0;margin-top:3px}
+.consent label{font-weight:400;font-size:16px;margin:0}
+form .btn{width:100%}
+.form-message{
+  display:none;margin-top:20px;padding:18px 20px;border-radius:12px;font-size:17px;
+  background:var(--beige);color:var(--text);
+}
+.form-message.show{display:block}
+
+/* ---------- 하단 ---------- */
+footer{background:var(--sage-dark);color:#E8EFE7;padding:50px 0;font-size:16px}
+footer strong{font-family:'Noto Serif KR',serif;font-size:22px;color:var(--white)}
+footer p{margin-top:8px}
+
+/* ---------- 태블릿 / 스마트폰 ---------- */
+@media (max-width:980px){
+  .menu-toggle{display:block}
+  .menu{
+    display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;
+    background:var(--cream);padding:12px 20px 24px;border-bottom:1px solid var(--beige);
+  }
+  .menu.open{display:flex}
+  .menu a{font-size:19px;padding:14px 16px}
+  .hero,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .hero .img-placeholder{aspect-ratio:16/10}
+}
+@media (max-width:600px){
+  body{font-size:18px}
+  .container{padding:0 16px}
+  section{padding:80px 0}
+  #home{padding:130px 0 80px}
+  .hero-buttons .btn{width:100%;text-align:center}
+  form{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     상단 메뉴
+     ========================================================= -->
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">
+      <strong>뇌리멤버</strong>
+      <span>BRAIN REMEMBER</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menu">☰ 메뉴</button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">홈</a></li>
+      <li><a href="#about">뇌리멤버 소개</a></li>
+      <li><a href="#health">건강한 봄날</a></li>
+      <li><a href="#ai">쉬운 AI 교실</a></li>
+      <li><a href="#business">인생 2막 비즈니스</a></li>
+      <li><a href="#contact" class="menu-cta">상담·교육 신청</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- =========================================================
+     1. 첫 화면 (홈)
+     ========================================================= -->
+<section id="home">
+  <div class="container hero">
+    <div>
+      <span class="eyebrow">BRAIN REMEMBER</span>
+      <h1>나이보다 중요한 건,<br><em>오늘의 습관</em>입니다.</h1>
+      <p>건강한 생활습관부터 쉬운 AI 활용까지.<br>더 건강하고 주도적인 인생 2막을 함께 준비합니다.</p>
+      <div class="hero-buttons">
+        <a href="#health" class="btn btn-primary">건강 콘텐츠 보기</a>
+        <a href="#ai" class="btn btn-outline">AI 교육 알아보기</a>
+        <a href="#contact" class="btn btn-outline">상담 문의하기</a>
+      </div>
+      <p class="brand-message">건강한 오늘을 만들고, 새로운 내일을 준비하는 곳.</p>
+    </div>
+    <!-- ★ 이미지 교체: 아래 div 한 줄을 <img src="사진파일이름.jpg" alt="설명" class="photo"> 로 바꾸세요 -->
+    <div class="img-placeholder">대표 이미지 자리<br>(나중에 실제 사진으로 교체)</div>
+  </div>
+</section>
+
+<!-- =========================================================
+     2. 뇌리멤버 소개
+     ========================================================= -->
+<section id="about" class="bg-beige">
+  <div class="container about-grid">
+    <!-- ★ 이미지 교체: 샐리님 프로필 사진 -->
+    <div class="img-placeholder">운영자 샐리 사진 자리<br>(나중에 실제 사진으로 교체)</div>
+    <div>
+      <span class="eyebrow">ABOUT</span>
+      <h2>뇌리멤버 소개</h2>
+      <p class="section-lead" style="margin-bottom:0">
+        뇌리멤버는 ‘기억하고 싶은 건강한 하루’를 함께 만들어 가는 공간입니다.
+        어렵지 않은 생활습관, 따라 하기 쉬운 AI 활용, 그리고 나에게 맞는 새로운 일까지
+        인생 2막을 차근차근 준비할 수 있도록 돕습니다.
+      </p>
+      <div class="values">
+        <div class="value">
+          <strong>건강한 오늘</strong>
+          <p>매일 실천할 수 있는 작은 생활습관을 이야기합니다.</p>
+        </div>
+        <div class="value">
+          <strong>쉬운 배움</strong>
+          <p>AI와 디지털 도구를 내 속도에 맞춰 천천히 배웁니다.</p>
+        </div>
+        <div class="value">
+          <strong>새로운 내일</strong>
+          <p>경험과 콘텐츠를 바탕으로 인생 2막의 가능성을 함께 찾습니다.</p>
+        </div>
+      </div>
+      <div class="operator">
+        <h3>운영자, 뇌리멤버 샐리</h3>
+        <!-- ★ 소개 수정: 샐리님 소개 글을 직접 써 넣으세요. 실제 경력·자격만 적어 주세요. -->
+        <p>안녕하세요, 뇌리멤버 샐리입니다. 건강한 생활습관과 쉬운 AI 활용법을 나누며,
+        같은 고민을 가진 분들과 함께 성장하고 싶습니다.
+        <span class="placeholder-text">[여기에 샐리님의 이야기와 실제 경력을 직접 입력하세요]</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. 건강한 봄날
+     ========================================================= -->
+<section id="health">
+  <div class="container">
+    <span class="eyebrow">HEALTHY SPRING</span>
+    <h2>건강한 봄날</h2>
+    <p class="section-lead">몸과 마음의 봄날은 일상의 작은 습관에서 시작됩니다. 생활 속에서 실천하기 쉬운 건강 정보를 나눕니다.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>뇌건강 습관</h3>
+        <p>새로운 것 배우기, 대화와 교류, 꾸준한 몸 움직임 등 뇌를 활발하게 쓰는 생활 습관을 소개합니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>편안한 수면</h3>
+        <p>규칙적인 잠자리 시간, 잠들기 전 환경 정리 등 숙면을 돕는 생활 속 방법을 알아봅니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>스트레스 관리</h3>
+        <p>호흡, 산책, 취미 생활처럼 마음을 가볍게 하는 일상의 휴식법을 함께 나눕니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>건강한 생활습관</h3>
+        <p>균형 잡힌 식사, 물 마시기, 가벼운 운동 등 오늘부터 할 수 있는 작은 실천을 정리합니다.</p>
+      </div>
+    </div>
+    <p class="notice">※ 이 공간의 내용은 일반적인 생활 건강 정보이며, 의학적 진단이나 치료를 대신하지 않습니다. 건강에 이상이 있거나 치료 중인 분은 반드시 전문 의료진과 상담하세요.</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     4. 쉬운 AI 교실
+     ========================================================= -->
+<section id="ai" class="bg-sage">
+  <div class="container">
+    <span class="eyebrow">EASY AI CLASS</span>
+    <h2>쉬운 AI 교실</h2>
+    <p class="section-lead">처음이어도 괜찮습니다. 스마트폰과 컴퓨터로 바로 써먹을 수 있는 AI 활용법을 쉬운 말로 알려 드립니다.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>AI 기초</h3>
+        <p>AI가 무엇인지, 어떻게 질문하면 좋은 답을 얻는지 기본부터 차근차근 배웁니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>클로드 활용</h3>
+        <p>AI 도우미 클로드로 글 정리, 아이디어 얻기, 자료 요약 등 일상 업무를 쉽게 해 봅니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>블로그 글쓰기</h3>
+        <p>AI의 도움을 받아 주제 정하기부터 글 완성까지, 나만의 블로그 글을 써 봅니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>릴스 제작</h3>
+        <p>짧은 영상의 구성과 자막 만들기 등 릴스·숏폼 영상 제작의 기초를 익힙니다.</p>
+      </div>
+    </div>
+    <div class="section-cta"><a href="#contact" class="btn btn-primary">AI 교육 신청하기</a></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     5. 인생 2막 비즈니스
+     ========================================================= -->
+<section id="business">
+  <div class="container">
+    <span class="eyebrow">SECOND ACT BUSINESS</span>
+    <h2>인생 2막 비즈니스</h2>
+    <p class="section-lead">그동안의 경험은 가장 큰 자산입니다. 나에게 맞는 방식으로 새로운 일을 시작할 수 있는 길을 함께 살펴봅니다.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>1인 비즈니스</h3>
+        <p>나의 관심사와 경험을 바탕으로 혼자서도 시작할 수 있는 작은 비즈니스를 함께 고민합니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>콘텐츠 활용</h3>
+        <p>블로그와 SNS 콘텐츠로 나를 알리고 사람들과 소통하는 방법을 나눕니다.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>파트너 활동</h3>
+        <p>뇌리멤버와 함께하는 파트너 활동에 대해 안내해 드립니다. 자세한 내용은 상담을 통해 확인하세요.</p>
+      </div>
+    </div>
+    <p class="notice">※ 비즈니스 활동의 결과와 수익은 개인의 상황과 노력에 따라 다르며, 특정 수익을 보장하지 않습니다.</p>
+    <div class="section-cta"><a href="#contact" class="btn btn-primary">비즈니스 상담 문의</a></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     6. 상담·교육 신청
+     ========================================================= -->
+<section id="contact" class="bg-beige">
+  <div class="container contact-grid">
+    <div>
+      <span class="eyebrow">CONTACT</span>
+      <h2>상담·교육 신청</h2>
+      <p class="section-lead" style="margin-bottom:28px">궁금한 점이 있으시면 편하게 연락 주세요. 아래 방법으로 바로 상담하실 수 있습니다.</p>
+      <div class="contact-ways">
+        <div class="way">
+          <strong>카카오톡 상담</strong>
+          <div class="val" id="kakaoText"></div>
+          <a href="#" id="kakaoBtn" class="btn btn-primary" style="margin-top:12px" target="_blank" rel="noopener">카카오톡으로 상담하기</a>
+        </div>
+        <div class="way">
+          <strong>전화 문의</strong>
+          <div class="val" id="phoneText"></div>
+        </div>
+        <div class="way">
+          <strong>이메일</strong>
+          <div class="val" id="emailText"></div>
+        </div>
+      </div>
+    </div>
+
+    <form id="contactForm" novalidate>
+      <div class="field">
+        <label for="name">이름</label>
+        <input type="text" id="name" placeholder="예) 홍길동">
+      </div>
+      <div class="field">
+        <label for="phone">연락처</label>
+        <input type="tel" id="phone" placeholder="예) 010-0000-0000">
+      </div>
+      <div class="field">
+        <label for="topic">문의 분야</label>
+        <select id="topic">
+          <option value="">선택해 주세요</option>
+          <option>건강한 생활습관</option>
+          <option>쉬운 AI 교육</option>
+          <option>인생 2막 비즈니스</option>
+          <option>기타 문의</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">문의 내용</label>
+        <textarea id="message" placeholder="궁금하신 내용을 편하게 적어 주세요."></textarea>
+      </div>
+      <!-- ★ 개인정보 동의: 공개 전에 실제 수집 항목·이용 목적·보관 기간에 맞게 문구를 수정하세요 -->
+      <div class="consent">
+        <input type="checkbox" id="agree">
+        <label for="agree">[필수] 개인정보 수집 및 이용에 동의합니다.
+          <span class="placeholder-text">(수집 항목, 이용 목적, 보관 기간 안내 문구를 공개 전 입력하세요)</span></label>
+      </div>
+      <button type="submit" class="btn btn-primary">문의 내용 확인하기</button>
+      <div class="form-message" id="formMessage" role="status"></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>뇌리멤버 BRAIN REMEMBER</strong>
+    <p>건강한 오늘을 만들고, 새로운 내일을 준비하는 곳.</p>
+    <p>운영: 뇌리멤버 샐리 &nbsp;|&nbsp; <span id="footerContact"></span></p>
+    <p style="opacity:.75">© <span id="year"></span> 뇌리멤버. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   ★★★ 내 정보 입력하는 곳 ★★★
+   따옴표(" ") 안의 글자만 바꿔 주세요.
+   비어 있으면 화면에 "[입력 필요]"로 표시됩니다.
+   ========================================================= */
+const CONFIG = {
+  kakaoLink: "",   // 예) "https://open.kakao.com/o/xxxxxxx"
+  phone:     "",   // 예) "010-1234-5678"
+  email:     ""    // 예) "sally@example.com"
+};
+
+/* ---------- 아래부터는 수정하지 않아도 됩니다 ---------- */
+function fill(id, value, emptyText){
+  const el = document.getElementById(id);
+  if(value){ el.textContent = value; }
+  else { el.innerHTML = '<span class="placeholder-text">' + emptyText + '</span>'; }
+}
+fill('kakaoText', CONFIG.kakaoLink ? '오픈채팅으로 편하게 문의하세요' : '', '[카카오톡 상담 링크 입력 필요]');
+fill('phoneText', CONFIG.phone, '[연락처 입력 필요]');
+fill('emailText', CONFIG.email, '[이메일 입력 필요]');
+fill('footerContact', CONFIG.phone || CONFIG.email, '[연락처 입력 필요]');
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const kakaoBtn = document.getElementById('kakaoBtn');
+if(CONFIG.kakaoLink){ kakaoBtn.href = CONFIG.kakaoLink; }
+else {
+  kakaoBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    alert('카카오톡 상담 링크가 아직 입력되지 않았습니다.');
+  });
+}
+
+/* 모바일 메뉴 열고 닫기 */
+const toggle = document.getElementById('menuToggle');
+const menu = document.getElementById('menu');
+toggle.addEventListener('click', function(){
+  const open = menu.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', open);
+  toggle.textContent = open ? '✕ 닫기' : '☰ 메뉴';
+});
+menu.querySelectorAll('a').forEach(function(a){
+  a.addEventListener('click', function(){
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', false);
+    toggle.textContent = '☰ 메뉴';
+  });
+});
+
+/* 현재 보고 있는 섹션의 메뉴 표시 */
+const links = menu.querySelectorAll('a');
+const sections = document.querySelectorAll('main section');
+window.addEventListener('scroll', function(){
+  let current = 'home';
+  sections.forEach(function(s){
+    if(window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  links.forEach(function(a){
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current && !a.classList.contains('menu-cta'));
+  });
+});
+
+/* 문의 양식 — 아직 서버와 연결되지 않아 실제로 전송되지 않습니다 */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const msg = document.getElementById('formMessage');
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const topic = document.getElementById('topic').value;
+  const message = document.getElementById('message').value.trim();
+  const agree = document.getElementById('agree').checked;
+
+  if(!name || !phone || !topic || !message){
+    msg.textContent = '이름, 연락처, 문의 분야, 문의 내용을 모두 입력해 주세요.';
+  } else if(!agree){
+    msg.textContent = '개인정보 수집 및 이용에 동의해 주세요.';
+  } else {
+    msg.innerHTML = '입력해 주셔서 감사합니다.<br><strong>현재 온라인 접수는 준비 중이라 이 양식으로는 문의가 전달되지 않습니다.</strong><br>번거로우시더라도 카카오톡 또는 전화로 연락 주세요.';
+  }
+  msg.classList.add('show');
+});
+</script>
+</body>
+</html>
