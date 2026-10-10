@@ -108,6 +108,18 @@ header{
 .img-placeholder.wide{aspect-ratio:16/10}
 .photo{width:100%;border-radius:var(--radius);object-fit:cover}
 
+/* ---------- 샐리 프로필 사진 ----------
+   ★ 사진 위치 조정: object-position의 두 숫자 중
+   앞 숫자는 좌우(50% = 가운데, 작을수록 왼쪽), 뒤 숫자는 위아래(작을수록 위쪽)입니다. */
+.photo-hero,
+.photo-profile{
+  aspect-ratio:4/5;height:auto;
+  object-fit:cover;object-position:47% 25%;
+  background:var(--sage-light);
+  border:1px solid var(--beige-dark);
+  box-shadow:0 18px 40px rgba(79,107,84,.12);
+}
+
 /* ---------- 소개 ---------- */
 .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
 .values{display:grid;gap:18px;margin-top:30px}
@@ -183,6 +195,9 @@ footer p{margin-top:8px}
   .menu a{font-size:19px;padding:14px 16px}
   .hero,.about-grid,.contact-grid{grid-template-columns:1fr}
   .hero .img-placeholder{aspect-ratio:16/10}
+  /* 태블릿·스마트폰: 첫 화면 사진은 가로형, 소개 사진은 너무 커지지 않게 가운데 정렬 */
+  .photo-hero{aspect-ratio:16/10;object-position:50% 30%}
+  .photo-profile{max-width:420px;margin:0 auto}
 }
 @media (max-width:600px){
   body{font-size:18px}
@@ -235,8 +250,8 @@ footer p{margin-top:8px}
       </div>
       <p class="brand-message">건강한 오늘을 만들고, 새로운 내일을 준비하는 곳.</p>
     </div>
-    <!-- ★ 이미지 교체: 아래 div 한 줄을 <img src="사진파일이름.jpg" alt="설명" class="photo"> 로 바꾸세요 -->
-    <div class="img-placeholder">대표 이미지 자리<br>(나중에 실제 사진으로 교체)</div>
+    <!-- ★ 대표 이미지: sally-profile.png 파일이 이 index.html과 같은 폴더에 있어야 보입니다 -->
+    <img src="sally-profile.png" alt="뇌리멤버 샐리 프로필 사진" class="photo photo-hero">
   </div>
 </section>
 
@@ -245,8 +260,8 @@ footer p{margin-top:8px}
      ========================================================= -->
 <section id="about" class="bg-beige">
   <div class="container about-grid">
-    <!-- ★ 이미지 교체: 샐리님 프로필 사진 -->
-    <div class="img-placeholder">운영자 샐리 사진 자리<br>(나중에 실제 사진으로 교체)</div>
+    <!-- ★ 운영자 사진: sally-profile.png 파일이 이 index.html과 같은 폴더에 있어야 보입니다 -->
+    <img src="sally-profile.png" alt="뇌리멤버 샐리 프로필 사진" class="photo photo-profile" loading="lazy">
     <div>
       <span class="eyebrow">ABOUT</span>
       <h2>뇌리멤버 소개</h2>
@@ -271,10 +286,11 @@ footer p{margin-top:8px}
       </div>
       <div class="operator">
         <h3>운영자, 뇌리멤버 샐리</h3>
-        <!-- ★ 소개 수정: 샐리님 소개 글을 직접 써 넣으세요. 실제 경력·자격만 적어 주세요. -->
-        <p>안녕하세요, 뇌리멤버 샐리입니다. 건강한 생활습관과 쉬운 AI 활용법을 나누며,
-        같은 고민을 가진 분들과 함께 성장하고 싶습니다.
-        <span class="placeholder-text">[여기에 샐리님의 이야기와 실제 경력을 직접 입력하세요]</span></p>
+        <!-- ★ 소개 수정: 샐리님 소개 글입니다. 문장을 바꾸려면 <p> 와 </p> 사이의 글자만 고치세요. -->
+        <p>안녕하세요, 뇌리멤버 샐리입니다.<br>
+        오랜 자영업 경험을 바탕으로 새로운 배움과 도전을 이어가고 있습니다.<br>
+        건강한 생활습관과 웰니스 정보, 누구나 쉽게 활용할 수 있는 AI 교육을 나누며 중장년층이 자신의 가능성을 발견하도록 돕고 싶습니다.<br>
+        어렵고 복잡한 정보는 쉽게, 실천하기 어려운 일은 한 걸음씩. 뇌리멤버에서 건강한 오늘과 새로운 내일을 함께 준비해요.</p>
       </div>
     </div>
   </div>
