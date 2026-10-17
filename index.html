@@ -207,6 +207,48 @@ footer p{margin-top:8px}
   .hero-buttons .btn{width:100%;text-align:center}
   form{padding:24px}
 }
+
+/* ---------- 간편로그인 ---------- */
+.menu-login{
+  display:block;padding:10px 14px;border-radius:10px;cursor:pointer;
+  font-family:inherit;font-size:17px;font-weight:500;color:var(--sage-dark);
+  background:var(--white);border:2px solid var(--sage-light);white-space:nowrap;
+}
+.menu-login:hover{border-color:var(--sage)}
+.login-overlay{
+  position:fixed;inset:0;z-index:200;background:rgba(46,43,39,.45);
+  display:none;align-items:center;justify-content:center;padding:16px;
+}
+.login-overlay.open{display:flex}
+.login-box{
+  background:var(--white);border-radius:var(--radius);padding:36px 30px 28px;
+  width:100%;max-width:420px;text-align:center;position:relative;
+}
+.login-box h3{font-size:24px;margin-bottom:6px}
+.login-box p{color:var(--text-soft);font-size:17px;margin-bottom:26px}
+.login-close{
+  position:absolute;top:12px;right:14px;background:none;border:none;cursor:pointer;
+  font-size:26px;line-height:1;color:var(--text-soft);padding:6px;
+}
+.social-btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  padding:15px 18px;border-radius:12px;font-family:inherit;font-size:18px;font-weight:700;
+  cursor:pointer;margin-bottom:12px;
+}
+.social-btn svg{width:22px;height:22px;flex-shrink:0}
+.btn-kakao{background:#FEE500;color:rgba(0,0,0,.85);border:none}
+.btn-kakao:hover{filter:brightness(.97)}
+.btn-google{background:var(--white);color:#1f1f1f;border:1px solid #c7c7c7}
+.btn-google:hover{background:#f7f7f7}
+.login-note{font-size:14px !important;color:var(--text-soft);margin:14px 0 0 !important}
+.login-status{
+  display:none;margin-bottom:18px;padding:12px 16px;border-radius:12px;
+  background:var(--sage-light);color:var(--sage-dark);font-size:16px;
+}
+.login-status.show{display:block}
+@media (max-width:980px){
+  .menu-login{width:100%;text-align:left;font-size:19px;padding:14px 16px;margin-top:6px}
+}
 </style>
 </head>
 <body>
@@ -228,6 +270,7 @@ footer p{margin-top:8px}
       <li><a href="#ai">쉬운 AI 교실</a></li>
       <li><a href="#business">인생 2막 비즈니스</a></li>
       <li><a href="#contact" class="menu-cta">상담·교육 신청</a></li>
+      <li><button type="button" class="menu-login" id="loginBtn">로그인</button></li>
     </ul>
   </div>
 </header>
@@ -264,7 +307,7 @@ footer p{margin-top:8px}
     <img src="sally-profile.png" alt="뇌리멤버 샐리 프로필 사진" class="photo photo-profile" loading="lazy">
     <div>
       <span class="eyebrow">ABOUT</span>
-      <h2>뇌리멤버 소개</h2>
+      <h2>건강 정보와 AI 활용법을 나눕니다.</h2>
       <p class="section-lead" style="margin-bottom:0">
         뇌리멤버는 ‘기억하고 싶은 건강한 하루’를 함께 만들어 가는 공간입니다.
         어렵지 않은 생활습관, 따라 하기 쉬운 AI 활용, 그리고 나에게 맞는 새로운 일까지
@@ -272,25 +315,24 @@ footer p{margin-top:8px}
       </p>
       <div class="values">
         <div class="value">
-          <strong>건강한 오늘</strong>
-          <p>매일 실천할 수 있는 작은 생활습관을 이야기합니다.</p>
+          <strong>건강·웰니스 정보</strong>
+          <p>뇌건강, 수면, 스트레스 관리와 일상 속 건강습관을 소개합니다.</p>
         </div>
         <div class="value">
-          <strong>쉬운 배움</strong>
-          <p>AI와 디지털 도구를 내 속도에 맞춰 천천히 배웁니다.</p>
+          <strong>AI 교육·콘텐츠 제작</strong>
+          <p>클로드 활용법부터 블로그 글쓰기, 릴스 제작까지 쉽게 알려 드립니다.</p>
         </div>
         <div class="value">
-          <strong>새로운 내일</strong>
-          <p>경험과 콘텐츠를 바탕으로 인생 2막의 가능성을 함께 찾습니다.</p>
+          <strong>1인 비즈니스·파트너 활동</strong>
+          <p>AI와 온라인 콘텐츠를 활용한 활동 방법과 파트너 참여 기회를 안내합니다.</p>
         </div>
       </div>
       <div class="operator">
         <h3>운영자, 뇌리멤버 샐리</h3>
         <!-- ★ 소개 수정: 샐리님 소개 글입니다. 문장을 바꾸려면 <p> 와 </p> 사이의 글자만 고치세요. -->
-        <p>안녕하세요, 뇌리멤버 샐리입니다.<br>
-        오랜 자영업 경험을 바탕으로 새로운 배움과 도전을 이어가고 있습니다.<br>
-        건강한 생활습관과 웰니스 정보, 누구나 쉽게 활용할 수 있는 AI 교육을 나누며 중장년층이 자신의 가능성을 발견하도록 돕고 싶습니다.<br>
-        어렵고 복잡한 정보는 쉽게, 실천하기 어려운 일은 한 걸음씩. 뇌리멤버에서 건강한 오늘과 새로운 내일을 함께 준비해요.</p>
+        <p>안녕하세요. 뇌리멤버 샐리입니다.<br>
+        건강한 생활습관과 웰니스 정보를 쉽게 전하고, AI를 활용한 블로그·SNS 콘텐츠 제작 방법을 알려 드립니다.<br>
+        건강을 챙기고 싶은 분, AI를 배우고 싶은 분, 새로운 활동을 시작하고 싶은 분들과 경험과 정보를 나누겠습니다.</p>
       </div>
     </div>
   </div>
@@ -423,11 +465,11 @@ footer p{margin-top:8px}
     <form id="contactForm" novalidate>
       <div class="field">
         <label for="name">이름</label>
-        <input type="text" id="name" placeholder="예) 홍길동">
+        <input type="text" id="name" placeholder="예) 홍길동" maxlength="50">
       </div>
       <div class="field">
         <label for="phone">연락처</label>
-        <input type="tel" id="phone" placeholder="예) 010-0000-0000">
+        <input type="tel" id="phone" placeholder="예) 010-0000-0000" maxlength="30">
       </div>
       <div class="field">
         <label for="topic">문의 분야</label>
@@ -441,7 +483,7 @@ footer p{margin-top:8px}
       </div>
       <div class="field">
         <label for="message">문의 내용</label>
-        <textarea id="message" placeholder="궁금하신 내용을 편하게 적어 주세요."></textarea>
+        <textarea id="message" placeholder="궁금하신 내용을 편하게 적어 주세요." maxlength="2000"></textarea>
       </div>
       <!-- ★ 개인정보 동의: 공개 전에 실제 수집 항목·이용 목적·보관 기간에 맞게 문구를 수정하세요 -->
       <div class="consent">
@@ -449,7 +491,8 @@ footer p{margin-top:8px}
         <label for="agree">[필수] 개인정보 수집 및 이용에 동의합니다.
           <span class="placeholder-text">(수집 항목, 이용 목적, 보관 기간 안내 문구를 공개 전 입력하세요)</span></label>
       </div>
-      <button type="submit" class="btn btn-primary">문의 내용 확인하기</button>
+      <div class="login-status" id="formLoginStatus"></div>
+      <button type="submit" class="btn btn-primary">문의 보내기</button>
       <div class="form-message" id="formMessage" role="status"></div>
     </form>
   </div>
@@ -465,6 +508,29 @@ footer p{margin-top:8px}
     <p style="opacity:.75">© <span id="year"></span> 뇌리멤버. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- =========================================================
+     간편로그인 창 (구글 · 카카오)
+     ========================================================= -->
+<div class="login-overlay" id="loginOverlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <div class="login-box">
+    <button type="button" class="login-close" id="loginClose" aria-label="닫기">&times;</button>
+    <h3 id="loginTitle">간편 로그인</h3>
+    <p>사용하시는 계정으로 바로 시작하세요.</p>
+    <button type="button" class="social-btn btn-kakao" id="kakaoLogin">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#000" d="M12 3C6.48 3 2 6.5 2 10.82c0 2.8 1.88 5.25 4.7 6.63-.2.75-.75 2.75-.86 3.17-.13.53.2.52.41.38.17-.11 2.7-1.83 3.79-2.58.63.09 1.28.14 1.96.14 5.52 0 10-3.5 10-7.82S17.52 3 12 3z"/></svg>
+      카카오 로그인
+    </button>
+    <button type="button" class="social-btn btn-google" id="googleLogin">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Google로 로그인
+    </button>
+    <p class="login-note">로그인 시 이름(닉네임)과 이메일 등 기본 정보가 저장됩니다.</p>
+  </div>
+</div>
+
+<!-- 간편로그인 라이브러리 (수파베이스) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 
 <script>
 /* =========================================================
@@ -528,8 +594,21 @@ window.addEventListener('scroll', function(){
   });
 });
 
-/* 문의 양식 — 아직 서버와 연결되지 않아 실제로 전송되지 않습니다 */
-document.getElementById('contactForm').addEventListener('submit', function(e){
+/* =========================================================
+   문의 양식 저장소 (수파베이스) 연결 정보
+   ※ 여기에는 공개용 Publishable key만 넣습니다.
+     secret / service_role 키는 절대 넣지 마세요.
+   ========================================================= */
+const SUPABASE = {
+  url: "https://ixyqhdnzhrpvaltntink.supabase.co",
+  key: "sb_publishable_Ejhg0jwARrHuNLEzxbQcDA_Znie8baX"
+};
+
+/* 문의 양식 — 제출하면 수파베이스 inquiries 표에 저장됩니다 */
+const contactForm = document.getElementById('contactForm');
+const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+contactForm.addEventListener('submit', async function(e){
   e.preventDefault();
   const msg = document.getElementById('formMessage');
   const name = document.getElementById('name').value.trim();
@@ -538,15 +617,114 @@ document.getElementById('contactForm').addEventListener('submit', function(e){
   const message = document.getElementById('message').value.trim();
   const agree = document.getElementById('agree').checked;
 
+  msg.classList.add('show');
   if(!name || !phone || !topic || !message){
     msg.textContent = '이름, 연락처, 문의 분야, 문의 내용을 모두 입력해 주세요.';
-  } else if(!agree){
-    msg.textContent = '개인정보 수집 및 이용에 동의해 주세요.';
-  } else {
-    msg.innerHTML = '입력해 주셔서 감사합니다.<br><strong>현재 온라인 접수는 준비 중이라 이 양식으로는 문의가 전달되지 않습니다.</strong><br>번거로우시더라도 카카오톡 또는 전화로 연락 주세요.';
+    return;
   }
-  msg.classList.add('show');
+  if(!agree){
+    msg.textContent = '개인정보 수집 및 이용에 동의해 주세요.';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '보내는 중...';
+  msg.textContent = '문의 내용을 보내고 있습니다. 잠시만 기다려 주세요.';
+
+  try{
+    const res = await fetch(SUPABASE.url + '/rest/v1/inquiries', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE.key,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ name: name, phone: phone, topic: topic, message: message, agreed: agree })
+    });
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+
+    msg.innerHTML = '<strong>문의가 접수되었습니다. 감사합니다.</strong><br>남겨 주신 연락처로 확인 후 연락드리겠습니다.';
+    contactForm.reset();
+  } catch(err){
+    console.error('문의 저장 실패:', err);
+    msg.innerHTML = '죄송합니다. 지금 문의를 접수하지 못했습니다.<br>잠시 후 다시 시도하시거나 카카오톡 또는 전화로 연락 주세요.';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '문의 보내기';
+  }
 });
+
+/* =========================================================
+   간편로그인 (카카오 · 구글) — 수파베이스 Auth 사용
+   ========================================================= */
+(function(){
+  const loginBtn = document.getElementById('loginBtn');
+  const overlay = document.getElementById('loginOverlay');
+  const formStatus = document.getElementById('formLoginStatus');
+
+  // 라이브러리를 불러오지 못하면 로그인 버튼만 숨기고 나머지 기능은 그대로 둡니다.
+  if(!window.supabase || !window.supabase.createClient){
+    loginBtn.parentElement.style.display = 'none';
+    return;
+  }
+  const sb = window.supabase.createClient(SUPABASE.url, SUPABASE.key);
+  let currentUser = null;
+
+  function openLogin(){ overlay.classList.add('open'); }
+  function closeLogin(){ overlay.classList.remove('open'); }
+
+  function displayName(user){
+    const m = (user && user.user_metadata) || {};
+    return m.full_name || m.name || m.nickname || m.preferred_username
+        || (user.email ? user.email.split('@')[0] : '회원');
+  }
+
+  function render(user){
+    currentUser = user;
+    if(user){
+      const name = displayName(user);
+      loginBtn.textContent = name + '님 · 로그아웃';
+      formStatus.textContent = name + '님으로 로그인되어 있습니다. 이름이 자동으로 입력되었습니다.';
+      formStatus.classList.add('show');
+      const nameInput = document.getElementById('name');
+      if(!nameInput.value) nameInput.value = name.slice(0, 50);
+    } else {
+      loginBtn.textContent = '로그인';
+      formStatus.classList.remove('show');
+    }
+  }
+
+  async function signIn(provider){
+    const { error } = await sb.auth.signInWithOAuth({
+      provider: provider,
+      options: { redirectTo: window.location.origin + window.location.pathname }
+    });
+    if(error){
+      console.error('로그인 오류:', error);
+      alert('로그인을 시작하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+    }
+  }
+
+  loginBtn.addEventListener('click', async function(){
+    if(currentUser){
+      if(confirm('로그아웃할까요?')){
+        await sb.auth.signOut();
+        render(null);
+      }
+    } else {
+      openLogin();
+    }
+  });
+  document.getElementById('loginClose').addEventListener('click', closeLogin);
+  overlay.addEventListener('click', function(e){ if(e.target === overlay) closeLogin(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLogin(); });
+  document.getElementById('kakaoLogin').addEventListener('click', function(){ signIn('kakao'); });
+  document.getElementById('googleLogin').addEventListener('click', function(){ signIn('google'); });
+
+  // 로그인 후 돌아왔을 때와 새로고침했을 때 로그인 상태를 반영합니다.
+  sb.auth.getSession().then(function(res){ render(res.data.session ? res.data.session.user : null); });
+  sb.auth.onAuthStateChange(function(_event, session){ render(session ? session.user : null); });
+})();
 </script>
 </body>
 </html>
