@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# After your domain is confirmed, add:
-# Sitemap: https://YOUR-DOMAIN/sitemap.xml
+Sitemap: https://brainremember.co.kr/sitemap.xml
